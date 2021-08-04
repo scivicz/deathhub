@@ -43,6 +43,10 @@ local GameSettingsPage = MainUI.AddPage("Game Settings",false)
 
 --Home Page
 
+HomePage.AddLablel("Credits")
+HomePage.AddLablel("============================")
+HomePage.AddLablel("Made by tryfulsss#0710 and Packwatch#0001")
+HomePage.AddLablel("============================")
 HomePage.AddButton("Copy Invite", function()
 	toClipboard("https://discord.gg/QbYceNx2Zq")
 end)
@@ -108,6 +112,14 @@ end)
 
 ScriptsPage.AddButton("Ragdoll Engine Script",function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/scivicz/scripts/main/ragdoll%20engine%20script'))()
+end)
+
+ScriptsPage.AddButton("Murder Mystery 2 Script",function()
+	loadstring(game:HttpGet("https://jack1214060.xyz/jayhub",true))()
+end)
+
+ScriptsPage.AddButton("Murder Mystery 2 Script",function()
+	loadstring(game:HttpGet("https://jack1214060.xyz/jayhub",true))()
 end)
 
 --game settings page
