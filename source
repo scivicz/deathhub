@@ -38,6 +38,8 @@ local MainUI = UILibrary.Load("Death Hub")
 local HomePage = MainUI.AddPage("Home",false)
 local PlayerPage = MainUI.AddPage("Player",false)
 local CommandsPage = MainUI.AddPage("Commands",true)
+local ScriptsPage = MainUI.AddPage("Scripts",true)
+local GameSettingsPage = MainUI.AddPage("Game Settings",false)
 
 --Home Page
 
@@ -86,4 +88,38 @@ CommandsPage.AddButton("Btools",function()
 	tool1.BinType = "Clone"
 	tool2.BinType = "Hammer"
 	tool3.BinType = "GameTool"
+end)
+
+--scripts page
+
+ScriptsPage.AddLabel("Note: Some scripts are not made by me.")
+
+ScriptsPage.AddButton("Emoji Hub",function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/scivicz/scripts/main/emoji'))()
+end)
+
+ScriptsPage.AddButton("INFY",function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+end)
+
+ScriptsPage.AddButton("Chat Spy",function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/scivicz/scripts/main/chat%20spy'))()
+end)
+
+ScriptsPage.AddButton("Ragdoll Engine Script",function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/scivicz/scripts/main/ragdoll%20engine%20script'))()
+end)
+
+--game settings page
+GameSettingsPage.AddLabel("Lighting Settings")
+GameSettingsPage.AddSlider("Brightness",{Min = 0, Max = 10, Def = game.Lighting.Brightness},function(Value)
+	game.Lighting.Brightness = Value
+end)
+
+GameSettingsPage.AddSlider("Time",{Min = 0, Max = 23.9, Def = game.Lighting.ClockTime},function(Value)
+	game.Lighting.ClockTime = Value
+end)
+
+GameSettingsPage.AddToggle("Shadows",game.Lighting.GlobalShadows,function(Value)
+	game.Lighting.GlobalShadows = Value
 end)
