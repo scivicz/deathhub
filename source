@@ -1,1 +1,89 @@
-print("Currently being created")
+--variables
+
+local player = game.Players.LocalPlayer
+local character = player.Character
+local sethidden = sethiddenproperty or set_hidden_property or set_hidden_prop
+local gethidden = gethiddenproperty or get_hidden_property or get_hidden_prop
+local setsimulation = setsimulationradius or set_simulation_radius
+local Players = game:GetService("Players")
+
+--functions
+function r15(plr)
+	if plr.Character:FindFirstChildOfClass('Humanoid').RigType == Enum.HumanoidRigType.R15 then
+		return true
+	end
+end
+function notify(title,text,duration,closebutton)
+	game.StarterGui:SetCore("SendNotification", 
+		{
+			Title = title;
+			Text = text;
+			Duration = duration;
+			Button1 = closebutton
+		}
+	)
+end
+function toClipboard(String)
+	local clipBoard = setclipboard or toclipboard or set_clipboard or (Clipboard and Clipboard.set)
+	if clipBoard then
+		clipBoard(String)
+		notify("Notice","Copied succesfully",5,"Okay")
+	else
+		notify("Error","Your exploit does not support clipboard. Your string has been printed in console. (Press f9 to view)",5,"Okay")
+	end
+end
+
+local UILibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/scivicz/deathhub/main/uilib"))()
+local MainUI = UILibrary.Load("Death Hub")
+local HomePage = MainUI.AddPage("Home",false)
+local PlayerPage = MainUI.AddPage("Player",false)
+local CommandsPage = MainUI.AddPage("Commands",true)
+
+--Home Page
+
+HomePage.AddButton("Copy Invite", function()
+	toClipboard("https://discord.gg/QbYceNx2Zq")
+end)
+
+HomePage.AddButton("Destroy Gui", function()
+	game.CoreGui:FindFirstChild("Death Hub"):Destroy()
+	notify("Bye bye :(","We hope to see you again",5,"Close")
+end)
+
+--Player Page
+
+PlayerPage.AddSlider("WalkSpeed",{Min = 1, Max = 250, Def = 16},function(Value)
+	character.Humanoid.WalkSpeed = Value
+end)
+
+PlayerPage.AddSlider("JumpPower",{Min = 1, Max = 250, Def = 50},function(Value)
+	character.Humanoid.JumpPower = Value
+end)
+
+PlayerPage.AddSlider("Gravity",{Min = 0, Max = 196.2, Def = 196.2},function(Value)
+	game.Workspace.Gravity = Value
+end)
+
+-- Commands Page
+
+CommandsPage.AddButton("Head Throw",function()
+	if not r15(player) then
+		local AnimationId = "35154961"
+		local Anim = Instance.new("Animation")
+		Anim.AnimationId = "rbxassetid://"..AnimationId
+		local k = player.Character.Humanoid:LoadAnimation(Anim)
+		k:Play(0)
+		k:AdjustSpeed(1)
+	else
+		notify("R6 Required","This command requires the r6 rig type",5,"Close")
+	end
+end)
+
+CommandsPage.AddButton("Btools",function()
+	local tool1 = Instance.new("HopperBin",game.Players.LocalPlayer.Backpack)
+	local tool2 = Instance.new("HopperBin",game.Players.LocalPlayer.Backpack)
+	local tool3 = Instance.new("HopperBin",game.Players.LocalPlayer.Backpack)
+	tool1.BinType = "Clone"
+	tool2.BinType = "Hammer"
+	tool3.BinType = "GameTool"
+end)
