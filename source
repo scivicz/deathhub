@@ -43,10 +43,10 @@ local GameSettingsPage = MainUI.AddPage("Game Settings",false)
 
 --Home Page
 
-HomePage.AddLablel("Credits")
-HomePage.AddLablel("============================")
-HomePage.AddLablel("Made by tryfulsss#0710 and Packwatch#0001")
-HomePage.AddLablel("============================")
+HomePage.AddLabel("Credits")
+
+HomePage.AddLabel("Made by tryfulsss#0710 and Packwatch#0001")
+
 HomePage.AddButton("Copy Invite", function()
 	toClipboard("https://discord.gg/QbYceNx2Zq")
 end)
