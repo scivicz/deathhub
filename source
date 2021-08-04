@@ -45,7 +45,7 @@ local GameSettingsPage = MainUI.AddPage("Game Settings",false)
 
 HomePage.AddLabel("Credits")
 
-HomePage.AddLabel("Made by tryfulsss#0710 and Packwatch#0001")
+HomePage.AddLabel("Made by tryfulsss#0710 and Jacob.#0803")
 
 HomePage.AddButton("Copy Invite", function()
 	toClipboard("https://discord.gg/QbYceNx2Zq")
@@ -58,12 +58,12 @@ end)
 
 --Player Page
 
-PlayerPage.AddSlider("WalkSpeed",{Min = 1, Max = 250, Def = 16},function(Value)
-	character.Humanoid.WalkSpeed = Value
+PlayerPage.AddSlider("WalkSpeed",{Min = 1, Max = 250, Def = 16},function(WsValue)
+	game.Workspace[game.Players.LocalPlayer.Name].Humanoid.WalkSpeed = WsValue
 end)
 
-PlayerPage.AddSlider("JumpPower",{Min = 1, Max = 250, Def = 50},function(Value)
-	character.Humanoid.JumpPower = Value
+PlayerPage.AddSlider("JumpPower",{Min = 1, Max = 250, Def = 50},function(JpValue)
+	game.Workspace[game.Players.LocalPlayer.Name].Humanoid.JumpPower = JpValue
 end)
 
 PlayerPage.AddSlider("Gravity",{Min = 0, Max = 196.2, Def = 196.2},function(Value)
@@ -125,8 +125,6 @@ end)
 ScriptsPage.AddButton("Prison Hub",function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/scivicz/scripts/main/Prison%20hub'))()
 end)
-
-ScriptsPage.AddButton("")
 
 --game settings page
 GameSettingsPage.AddLabel("Lighting Settings")
