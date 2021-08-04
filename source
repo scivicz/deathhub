@@ -126,6 +126,10 @@ ScriptsPage.AddButton("Prison Hub",function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/scivicz/scripts/main/Prison%20hub'))()
 end)
 
+ScriptsPage.AddButton("CMD-X",function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/CMD-X/CMD-X/master/Source", true))()
+end)
+
 --game settings page
 GameSettingsPage.AddLabel("Lighting Settings")
 GameSettingsPage.AddSlider("Brightness",{Min = 0, Max = 10, Def = game.Lighting.Brightness},function(Value)
