@@ -118,9 +118,15 @@ ScriptsPage.AddButton("Murder Mystery 2 Script",function()
 	loadstring(game:HttpGet("https://jack1214060.xyz/jayhub",true))()
 end)
 
-ScriptsPage.AddButton("Murder Mystery 2 Script",function()
-	loadstring(game:HttpGet("https://jack1214060.xyz/jayhub",true))()
+ScriptsPage.AddButton("FE Car",function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/MonkoTubeYT/carscript/master/!carscript.lua',true))()
 end)
+
+ScriptsPage.AddButton("Prison Hub",function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/scivicz/scripts/main/Prison%20hub'))()
+end)
+
+ScriptsPage.AddButton("")
 
 --game settings page
 GameSettingsPage.AddLabel("Lighting Settings")
