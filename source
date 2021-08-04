@@ -94,6 +94,20 @@ CommandsPage.AddButton("Btools",function()
 	tool3.BinType = "GameTool"
 end)
 
+CommandsPage.AddButton("Save Game",function()
+	if saveinstance then
+		notify("Loading","Downloading game. This will take a while",15,"Okay")
+		if getsynasset then
+			saveinstance()
+		else
+			saveinstance(game)
+		end
+		notify('Game Saved','Saved place to the workspace folder within your exploit folder.',15,"Close")
+	else
+		notify('Incompatible Exploit','Your exploit does not support this command (missing saveinstance)',15,"Close")
+	end
+end)
+
 --scripts page
 
 ScriptsPage.AddLabel("Note: Some scripts are not made by me.")
