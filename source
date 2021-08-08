@@ -13,7 +13,7 @@ function r15(plr)
 		return true
 	end
 end
-function notify(title,text,duration,closebutton)
+function deathhubnotify(title,text,duration,closebutton)
 	game.StarterGui:SetCore("SendNotification", 
 		{
 			Title = title;
@@ -23,13 +23,15 @@ function notify(title,text,duration,closebutton)
 		}
 	)
 end
+
+
 function toClipboard(String)
 	local clipBoard = setclipboard or toclipboard or set_clipboard or (Clipboard and Clipboard.set)
 	if clipBoard then
 		clipBoard(String)
-		notify("Notice","Copied succesfully",5,"Okay")
+		deathhubnotify("Notice","Copied succesfully",5,"Okay")
 	else
-		notify("Error","Your exploit does not support clipboard. Your string has been printed in console. (Press f9 to view)",5,"Okay")
+		deathhubnotify("Error","Your exploit does not support clipboard. Your string has been printed in console. (Press f9 to view)",5,"Okay")
 	end
 end
 
@@ -53,7 +55,7 @@ end)
 
 HomePage.AddButton("Destroy Gui", function()
 	game.CoreGui:FindFirstChild("Death Hub"):Destroy()
-	notify("Bye bye :(","We hope to see you again",5,"Close")
+	deathhubnotify("Bye bye :(","We hope to see you again",5,"Close")
 end)
 
 --Player Page
@@ -81,7 +83,7 @@ CommandsPage.AddButton("Head Throw",function()
 		k:Play(0)
 		k:AdjustSpeed(1)
 	else
-		notify("R6 Required","This command requires the r6 rig type",5,"Close")
+		deathhubnotify("R6 Required","This command requires the r6 rig type",5,"Close")
 	end
 end)
 
@@ -94,19 +96,40 @@ CommandsPage.AddButton("Btools",function()
 	tool3.BinType = "GameTool"
 end)
 
+CommandsPage.AddButton("Drop all tools", function()
+	for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+		if v.ClassName == "Tool" then
+			v.CanBeDropped = true
+			v.Parent = game.Players.LocalPlayer.Character
+			wait()
+			v.Parent = workspace.Terrain
+			deathhubnotify("Notice","Dropped Tools Click refresh to finish dropping all tools",15,"Okay")
+		end
+	end
+end)
+
+CommandsPage.AddButton("InfJump",function()
+	Mouse = game.Players.LocalPlayer:GetMouse()
+	Mouse.KeyDown:Connect(function(Key)
+		if Key == " " then
+			game.Players.LocalPlayer.Character.Humanoid:ChangeState(3)
+		end
+	end)
+end)
 CommandsPage.AddButton("Save Game",function()
 	if saveinstance then
-		notify("Loading","Downloading game. This will take a while",15,"Okay")
+		deathhubnotify("Loading","Downloading game. This will take a while",15,"Okay")
 		if getsynasset then
 			saveinstance()
 		else
 			saveinstance(game)
 		end
-		notify('Game Saved','Saved place to the workspace folder within your exploit folder.',15,"Close")
+		deathhubnotify('Game Saved','Saved place to the workspace folder within your exploit folder.',15,"Close")
 	else
-		notify('Incompatible Exploit','Your exploit does not support this command (missing saveinstance)',15,"Close")
+		deathhubnotify('Incompatible Exploit','Your exploit does not support this command (missing saveinstance)',15,"Close")
 	end
 end)
+
 
 --scripts page
 
@@ -142,6 +165,36 @@ end)
 
 ScriptsPage.AddButton("CMD-X",function()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/CMD-X/CMD-X/master/Source", true))()
+end)
+
+ScriptsPage.AddButton("X to drop tool", function()
+	local player = game.Players.LocalPlayer
+	local mouse = player:GetMouse()
+	bind = "x" -- has to be lowercase
+
+	-- Script
+
+	mouse.KeyDown:connect(function(key)
+		if key == bind then
+			local ToolName = ""
+			local Counter = 0
+
+			for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+				if v:IsA("Tool") then
+					Counter = Counter + 1
+					ToolName = v.Name
+				end
+			end
+
+			if Counter >= 1 then
+				local Tool = game.Players.LocalPlayer.Character[ToolName]
+				Tool.Parent = game.Workspace
+				deathhubnotify("Notice","Dropped "..Tool.Name.." Click refresh to finish dropping all tools",15,"Okay")
+			else
+				deathhubnotify("Notice","No tool found",15,"Okay")
+			end
+		end
+	end)
 end)
 
 --game settings page
